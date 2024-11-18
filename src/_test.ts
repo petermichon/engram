@@ -54,7 +54,7 @@ function test() {
     Deno.test("Test n°4", () => {
         const bytecode = [
             { opcode: 1, operand: 0b00000_00001_00010_00011n }, // input
-            { opcode: 0, operand: 0b00011_00011_0001100011n }, // input mask
+            { opcode: 0, operand: 0b00011_00011_00011_00011n }, // input mask
             { opcode: 3, operand: 0b00101_00101_00101_00101n },
             { opcode: 2, operand: 0b00100_00100_00100_00100n },
             { opcode: 3, operand: 0b00111_00111_00111_00111n },
