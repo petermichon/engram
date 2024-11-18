@@ -1,6 +1,6 @@
 {
     "name": "@helionaires/engram",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "exports": "./src/engram.ts",
     "tasks": {
         "dev": "deno run --watch src/index.ts",
