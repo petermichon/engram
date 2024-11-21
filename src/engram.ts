@@ -1,5 +1,7 @@
 /**
- * This module contains functions to generate in-place code from a bytecode.
+ * This module contains functions to generate in-place algorithms from an
+ * intermediate representation bytecode. Currently, only JavaScript is
+ * supported as a target code.
  * @module
  */
 
