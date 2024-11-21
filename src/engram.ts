@@ -18,11 +18,8 @@ const Operators = [
 
 /**
  * Generates a JavaScript script from a bytecode.
- * @param bytecode The bytecode used to generate the JavaScript script.
  * @param bytecode The bytecode used for generating the JavaScript script.
- * It must be of type `{ opcode: number, operand: bigint }[]`.
- * With an empty bytecode, the script will only contain `0n`.
- * With an empty bytecode, the script will only contains the value `0n`.
+ * It must be of type `{ opcode: number, operand: number }[]`.
  * @returns The JavaScript script generated from the bytecode
  */
 export function generateJS(bytecode: Bytecode, size: number): string {
