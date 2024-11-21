@@ -1,41 +1,50 @@
-type Bytecode = { opcode: number; operand: bigint }[];
+type Bytecode = { opcode: number; operand: number }[];
 
-const OperatorsJS = ["&", "|", "^", "+", "-", "*", "/", "<<", ">>", "%", "**"];
+const Operators = [
+    "", // [0] = [n]
+    "", // [n] = [0]
+    "&", // [0] &= n
+    "|", // [0] |= n
+    "^", // [0] ^= n
+    "<<", // [0] <<= n
+    ">>", // [0] >>= n
+    "+", // [0] += n
+    "-", // [0] -= n
+    "*", // [0] *= n
+    "/", // [0] /= n
+    "%", // [0] %= n
+    "**", // [0] **= n
+];
 
-/**
- * Generates a JavaScript script from a bytecode.
- * @param bytecode The bytecode used for generating the JavaScript script.
- * It must be of type `{ opcode: number, operand: bigint }[]`.
- * With an empty bytecode, the script will only contains the value `0n`.
- * @returns The JavaScript script generated from the bytecode
- */
-export function generateJS(bytecode: Bytecode): string {
+export function generateJS(bytecode: Bytecode, size: number): string {
     const lines = new Array<Array<string>>();
     {
         const first = 0;
         let current = 1;
-        const last = bytecode.length;
 
-        lines[first] = [];
+        lines[first] = [`const w = new Uint32Array(${size});\n`];
 
         for (const instruction of bytecode) {
-            const opcode = OperatorsJS[instruction.opcode];
-            const operand = instruction.operand.toString();
-            lines[current] = [" ", opcode, " ", operand, "n", ")"];
+            let word = `w[0]`;
+            const operator = Operators[instruction.opcode];
+            let operand = instruction.operand.toString();
 
-            lines[first].push("(");
+            if (instruction.opcode === 0) {
+                operand = `w[${operand}]`;
+            }
+
+            if (instruction.opcode == 1) {
+                word = `w[${operand}]`;
+                operand = `w[0]`;
+            }
+
+            lines[current] = [`${word} ${operator}= ${operand};\n`];
+
             current += 1;
         }
 
-        {
-            // This block of code is not necessary for the script to work
-            lines[first].pop(); // remove unnecessary "("
-            lines[last].pop(); // remove unnecessary ")"
-            lines[last].push(";");
-        }
-
-        // Add inital value
-        lines[first].push("0", "n");
+        const last = bytecode.length + 1;
+        lines[last] = ["w;\n"];
     }
 
     const script = lines.flat().join("");
