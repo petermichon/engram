@@ -4,6 +4,7 @@
     "exports": "./src/engram.ts",
     "main": "./src/engram.ts",
     "tasks": {
+        "dev": "deno run --watch ./src/main.ts",
         "test": "deno test ./src"
     }
 }
