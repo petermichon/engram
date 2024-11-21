@@ -14,13 +14,13 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: read
-
 jobs:
   test:
     name: Run tests
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
 
     steps:
       - name: Clone repository
@@ -40,3 +40,19 @@ jobs:
 
       - name: Run tests
         run: deno test -A
+
+  publish:
+    name: Publish
+    runs-on: ubuntu-latest
+
+    needs: test
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Publish package
+        run: npx jsr publish
