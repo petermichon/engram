@@ -1,3 +1,8 @@
+/**
+ * This module contains functions to generate in-place code from a bytecode.
+ * @module
+ */
+
 type Bytecode = { opcode: number; operand: number }[];
 
 const Operators = [
