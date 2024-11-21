@@ -1,6 +1,7 @@
 {
     "name": "@helionaires/engram",
     "version": "0.2.2",
+    "license": "MIT",
     "exports": "./src/engram.ts",
     "main": "./src/engram.ts",
     "tasks": {
