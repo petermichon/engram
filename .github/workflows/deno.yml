@@ -31,11 +31,8 @@ jobs:
         with:
           deno-version: v2.x
 
-      # - name: Setup Deno
-      #   # uses: denoland/setup-deno@v1
-      #   uses: denoland/setup-deno@61fe2df320078202e33d7d5ad347e7dcfa0e8f31  # v1.1.2
-      #   with:
-      #     deno-version: v1.x
+      - name: Run linter
+        run: deno lint
 
       # Uncomment this step to verify the use of 'deno fmt' on each commit.
       # - name: Verify formatting
@@ -44,8 +41,6 @@ jobs:
       # - name: Update Deno
       #   run: deno upgrade
 
-      # - name: Run linter
-      #   run: deno lint
 
       # - name: Run tests
       #   run: deno test -A
