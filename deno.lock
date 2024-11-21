@@ -1,5 +1,4 @@
 {
-  "remote": {},
   "version": "4",
   "specifiers": {
     "jsr:@std/assert@*": "1.0.7",
