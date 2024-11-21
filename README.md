@@ -44,7 +44,7 @@ The current implementation only supports the generation of JavaScript code.
 
 The bytecode is an intermediate representation of the instructions.
 
-Here is the list of opcodes and their JavaScript equivalent operation.
+Here is the list of opcodes and their JavaScript equivalent operation
 
 | Opcode | JS Equivalent     |
 | ------ | ----------------- |
