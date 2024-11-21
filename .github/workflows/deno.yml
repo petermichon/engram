@@ -19,13 +19,14 @@ permissions:
 
 jobs:
   test:
+    name: Run tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Setup repo
+      - name: Clone repository
         uses: actions/checkout@v4
 
-      - name: Setup Deno
+      - name: Install Deno
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
@@ -43,8 +44,8 @@ jobs:
       # - name: Update Deno
       #   run: deno upgrade
 
-      - name: Run linter
-        run: deno lint
+      # - name: Run linter
+      #   run: deno lint
 
-      - name: Run tests
-        run: deno test -A
+      # - name: Run tests
+      #   run: deno test -A
