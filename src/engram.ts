@@ -24,7 +24,8 @@ const Operators = [
 /**
  * Generates a JavaScript script from a bytecode.
  * @param bytecode The bytecode used for generating the JavaScript script.
- * It must be of type `{ opcode: number, operand: number }[]`.
+ * It is of type `{ opcode: number, operand: number }[]`.
+ * @param size The amount of 32 bits memory words allocated by the script.
  * @returns The JavaScript script generated from the bytecode
  */
 export function generateJS(bytecode: Bytecode, size: number): string {
