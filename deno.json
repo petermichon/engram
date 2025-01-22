@@ -1,6 +1,6 @@
 {
-    "name": "@helionaires/engram",
-    "version": "0.2.7",
+    "name": "@petermichon/engram",
+    "version": "0.3.0",
     "license": "MIT",
     "exports": "./src/engram.ts",
     "main": "./src/engram.ts",
