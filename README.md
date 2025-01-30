@@ -7,7 +7,7 @@ Engram is a simple code generator for in-place computation.
 Here is a basic example
 
 ```ts
-import * as engram from "@helionaires/engram";
+import * as engram from "@petermichon/engram";
 
 function main() {
     const bytecode = [
