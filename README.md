@@ -1,5 +1,7 @@
 # Engram
 
+[![Deno](https://github.com/petermichon/engram/actions/workflows/deno.yml/badge.svg)](https://github.com/petermichon/engram/actions/workflows/deno.yml)
+
 Engram is a simple code generator for in-place computation.
 
 ## Usage
