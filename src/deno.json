@@ -1,6 +1,5 @@
 {
   "tasks": {
-    "dev": "deno run --watch ./index.ts",
     "test": "deno test ."
   }
 }
