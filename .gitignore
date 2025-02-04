@@ -1,2 +1,2 @@
-src/.vscode
-src/deno.lock
+/src/.vscode
+/src/deno.lock
