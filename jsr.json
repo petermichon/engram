@@ -2,6 +2,6 @@
     "name": "@petermichon/engram",
     "version": "0.3.2",
     "license": "MIT",
-    "exports": "./src/engram.ts",
-    "main": "./src/engram.ts"
+    "exports": "./mod.ts",
+    "main": "./mod.ts"
 }
