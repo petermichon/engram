@@ -22,7 +22,7 @@ function main() {
 }
 ```
 
-You can then run the generated JavaScript code
+This is the generated JavaScript code
 
 ```ts
 const w = new Uint32Array(2);
@@ -32,7 +32,7 @@ w[1] = w[0];
 w;
 ```
 
-You can also run the script at runtime using `eval`
+The script can be executed at runtime using `eval`
 
 ```ts
 console.log(eval(script).toString());
