@@ -1,1 +1,1 @@
-export * from "./src/engram.ts";
+export * from "./src/generateJS.ts";

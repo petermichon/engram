@@ -1,5 +1,5 @@
 import { assertEquals } from 'jsr:@std/assert'
-import { generateJS } from './engram.ts'
+import { generateJS } from './generateJS.ts'
 
 const Opcode = {
   move_reg: 0,
