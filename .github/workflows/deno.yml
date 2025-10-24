@@ -36,7 +36,7 @@ jobs:
       #   run: deno fmt --check
 
       - name: Install dependencies
-        run: deno cache --lock=deno.lock ./src/mod.ts
+        run: deno add jsr:@std/assert
 
       - name: Run linter
         run: deno lint
