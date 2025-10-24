@@ -2,84 +2,71 @@
 
 [![Deno](https://github.com/petermichon/engram/actions/workflows/deno.yml/badge.svg)](https://github.com/petermichon/engram/actions/workflows/deno.yml)
 
-Engram is a simple code generator for in-place computation.
+Engram is a simple code generator for creating in‑place algorithms in JavaScript.
 
 ## Usage
 
-Here is a basic example
+Here is a basic example written in TypeScript
 
 ```ts
 import * as engram from "@petermichon/engram";
 
 function main() {
-    const bytecode = [
-        { opcode: 0, operand: 1 }, // [0] = [1]
-        { opcode: 7, operand: 1 }, // [0] += 1
-        { opcode: 1, operand: 1 }, // [1] = [0]
-    ];
-    const size = 2;
-    const script = engram.generateJS(bytecode, size);
-    
-    console.log(script);
+  const bytecode: [string, number][] = [
+    ["+", 1],
+    // ...
+  ];
+
+  const script = engram.generateJS(bytecode);
+  const fn = new Function("n", script);
+
+  console.log(script);
+  console.log(fn(0));
 }
 ```
 
-This is the generated JavaScript code
+This is the generated JavaScript script
 
-```ts
-const w = new Uint32Array(2);
-w[0] = w[1];
-w[0] += 1;
-w[1] = w[0];
-w;
+```js
+return n + 1;
 ```
 
-The script can be executed at runtime using `eval`
+Using the `FunctionConstructor`, the generated script can be turned into a JavaScript function. This is how the function looks like
+
+```js
+function anonymous(n) {
+  return n + 1;
+}
+```
+
+The function can then be called at runtime
 
 ```ts
-console.log(eval(script).toString());
+const fn = new Function("n", script);
+console.log(fn(0));
 ```
+
+This will print `1`
+
+## Operations Table
+
+Here is the list of supported JavaScript operations
+
+| Opcode | Description          |
+| ------ | -------------------- |
+| &      | Bitwise AND          |
+| \|     | Bitwise OR           |
+| ^      | Bitwise XOR          |
+| <<     | Left shift           |
+| >>     | Right shift          |
+| >>>    | Unsigned right shift |
+| +      | Addition             |
+| -      | Subtraction          |
+| \*     | Multiplication       |
+| /      | Division             |
+| %      | Modulo               |
+| \*\*   | Exponentiation       |
+
+## Limitations
 
 The current implementation only supports the generation of JavaScript code.
-
-## Opcode Table
-
-The bytecode is an intermediate representation of the instructions.
-
-Here is the list of opcodes and their JavaScript equivalent operation
-
-| Opcode | JS Equivalent     |
-| ------ | ----------------- |
-| 0      | `[0] = [operand]` |
-| 1      | `[operand] = [0]` |
-| 2      | `[0] &= operand`  |
-| 3      | `[0] \|= operand` |
-| 4      | `[0] ^= operand`  |
-| 5      | `[0] <<= operand` |
-| 6      | `[0] >>= operand` |
-| 7      | `[0] += operand`  |
-| 8      | `[0] -= operand`  |
-| 9      | `[0] *= operand`  |
-| 10     | `[0] /= operand`  |
-| 11     | `[0] %= operand`  |
-| 12     | `[0] **= operand` |
-
-For code clarity, you can use the following `Opcode` object
-
-```ts
-const Opcode = {
-    move_reg: 0,
-    move_mem: 1,
-    and: 2,
-    or: 3,
-    xor: 4,
-    lshift: 5,
-    rshift: 6,
-    add: 7,
-    sub: 8,
-    mul: 9,
-    div: 10,
-    mod: 11,
-    pow: 12,
-};
-```
